@@ -124,6 +124,32 @@ nav a:hover {
     box-shadow: 0 0 20px rgba(255, 99, 71, 0.5);
 }
 
+/* Certifications */
+.cert-list {
+    list-style: none;
+    padding: 0;
+}
+
+.cert-list li {
+    padding: 10px 0;
+    font-size: 1.2rem;
+}
+
+/* Contact Section */
+.contact-info p {
+    font-size: 1.2rem;
+    line-height: 2;
+}
+
+.contact-info a {
+    color: #ff6347;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
 /* Footer */
 footer {
     text-align: center;
