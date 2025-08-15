@@ -59,14 +59,16 @@ nav a:hover {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: calc(100vh - 80px); /* Adjust for navbar height */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     background: linear-gradient(120deg, #111, #333);
     animation: fadeIn 2s ease;
     padding: 0 20px;
+    margin-top: 80px; /* Prevent overlap with navbar */
 }
 
 .hero-content h2 {
@@ -152,21 +154,21 @@ nav a:hover {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 40px 0 0 0;
+    margin: 30px 0 0 0; /* Less space above divider */
 }
 .divider span {
     display: block;
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #ff6347 40%, #fff 100%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #ff6347 60%, #fff 100%);
     border-radius: 2px;
-    opacity: 0.7;
+    opacity: 0.4; /* Make divider less prominent */
 }
 
 /* About Content */
 .about-content {
     margin-top: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* More space after My Work */
     background: rgba(255,255,255,0.03);
     border-radius: 12px;
     padding: 25px 20px;
@@ -230,6 +232,11 @@ nav a:hover {
     font-size: 2.5rem;
     border-bottom: 2px solid #ff6347;
     display: inline-block;
+}
+
+.section-title {
+    margin-bottom: 18px;
+    display: block;
 }
 
 /* Responsive Sections */
