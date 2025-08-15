@@ -105,6 +105,47 @@ nav a:hover {
     }
 }
 
+/* Call-to-Action Button */
+.cta-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: #ff6347;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(255,99,71,0.15);
+    transition: background 0.4s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    animation: bounceIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.cta-btn:hover {
+    background: #e5533d;
+    transform: scale(1.07) translateY(-4px);
+    box-shadow: 0 8px 32px rgba(255,99,71,0.25);
+}
+.cta-btn::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+    z-index: 0;
+}
+.cta-btn:active::after {
+    width: 120%;
+    height: 120%;
+}
+
 /* Sections */
 .section {
     padding: 80px 20px;
@@ -214,4 +255,22 @@ footer {
 @keyframes slideUp {
     from { transform: translateY(50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+    80% {
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
