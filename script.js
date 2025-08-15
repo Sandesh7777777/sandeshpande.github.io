@@ -4,46 +4,73 @@
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
     });
 });
 
-// Fade-in effect on scroll
+// Fade-in effect on scroll using Intersection Observer for performance
 const sections = document.querySelectorAll('.section');
-
-const revealOnScroll = () => {
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight * 0.85;
-        if (sectionTop < windowHeight) {
-            section.classList.add('visible');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
         }
     });
-};
+}, {
+    threshold: 0.15
+});
+sections.forEach(section => {
+    observer.observe(section);
+});
 
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
-
-// Dynamic navbar shadow on scroll
+// Dynamic navbar shadow on scroll (debounced for performance)
 const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
+let lastScrollY = window.scrollY;
+let ticking = false;
+function updateNavbarShadow() {
+    if (!navbar) return;
     if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.3)';
+        navbar.style.transition = 'box-shadow 0.3s cubic-bezier(0.4,0,0.2,1)';
+        navbar.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)';
     } else {
         navbar.style.boxShadow = 'none';
     }
+    ticking = false;
+}
+window.addEventListener('scroll', () => {
+    lastScrollY = window.scrollY;
+    if (!ticking) {
+        window.requestAnimationFrame(updateNavbarShadow);
+        ticking = true;
+    }
+});
+window.addEventListener('load', updateNavbarShadow);
+
+// Hover and focus animation on project cards (accessibility)
+document.querySelectorAll('.project-card').forEach(card => {
+    card.setAttribute('tabindex', '0'); // Make focusable
+    card.addEventListener('mouseenter', () => {
+        card.classList.add('card-hover');
+    });
+    card.addEventListener('mouseleave', () => {
+        card.classList.remove('card-hover');
+    });
+    card.addEventListener('focus', () => {
+        card.classList.add('card-hover');
+    });
+    card.addEventListener('blur', () => {
+        card.classList.remove('card-hover');
+    });
 });
 
-// Hover animation on project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'scale(1.05)';
-    });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'scale(1)';
+// Optional: Gentle parallax effect for sections (premium feel)
+window.addEventListener('scroll', () => {
+    document.querySelectorAll('.parallax').forEach(el => {
+        const speed = parseFloat(el.dataset.parallaxSpeed) || 0.2;
+        el.style.transform = `translateY(${window.scrollY * speed}px)`;
     });
 });
