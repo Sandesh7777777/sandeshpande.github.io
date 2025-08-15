@@ -97,7 +97,7 @@ nav a:hover {
 }
 
 /* Profile Image Styling */
-.profile-img {
+/* .profile-img {
     width: 180px;
     height: 180px;
     object-fit: cover;
@@ -106,7 +106,7 @@ nav a:hover {
     box-shadow: 0 4px 24px rgba(255,99,71,0.15);
     margin-bottom: 25px;
     background: #222;
-}
+} */
 
 /* Hero Section Texts */
 .hero-title {
@@ -130,7 +130,7 @@ nav a:hover {
 }
 
 /* Hero Socials */
-.hero-socials {
+/* .hero-socials {
     display: flex;
     justify-content: center;
     gap: 18px;
@@ -145,7 +145,7 @@ nav a:hover {
 .hero-socials a:hover img {
     filter: none;
     transform: scale(1.15);
-}
+} */
 
 /* Divider Styling */
 .divider {
